@@ -12,7 +12,7 @@
 </p>
 
 ## Overview
-Discover astronomy curiosities with NASA in your Open Web Desktop client
+Discover astronomy curiosities with NASA in your Open Web Desktop client. <br />
 Information is retrieved from the open API using the example query https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY 
 
 ## Quick install
