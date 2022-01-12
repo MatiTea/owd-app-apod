@@ -2,7 +2,7 @@
 > Display the Astronomy Picture of the Day by NASA in an Open Web Desktop window
 
 <p>
-    <img src="media/demo.png" alt="OWD Sample module demo" />
+    <img src="media/demo.png" alt="OWD APOD demo" />
 </p>
 
 <p>
@@ -12,9 +12,13 @@
 </p>
 
 ## Overview
-Discover astronomy curiosities with NASA in your Open Web Desktop client.<br />
-Information is retrieved from the open API using the example query<br />
-https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY 
+<p>
+    Discover astronomy curiosities with NASA in your Open Web Desktop client.
+</p>
+<p>
+    Information is retrieved from the open API using the example query<br />
+    https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY
+</p>
 
 ## Quick install
 - Move to your client folder, then
