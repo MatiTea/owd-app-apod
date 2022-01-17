@@ -1,38 +1,43 @@
 <template>
   <WindowApp>
-    <div v-if="errored">
+    <div v-if="errored" class="text-error">
       <p>
-        Not able to retrieve this information at the moment, please try again
-        later.
+        Not able to retrieve this information at the moment. <br />
+        Please try again later.
       </p>
     </div>
 
-    <div v-else id="image-container">
-      <v-img id="pic" :src="info.url" alt="A Year of Sunrises" height="100%" />
-    </div>
+    <div v-else>
+      <div id="image-container">
+        <v-img
+          id="pic"
+          :src="info.url"
+          contain="false"
+        />
+      </div>
 
-    <div>
-      <h2 id="title">
-        {{ info.title }}
-      </h2>
+      <div>
+        <h2 id="title">
+          {{ info.title }}
+        </h2>
 
-      <p id="exp">
-        {{ info.explanation }}
-      </p>
+        <p id="exp">
+          {{ info.explanation }}
+        </p>
 
-      <div id="info">
-        <div>
-          <p id="date">
-            {{ info.date }}
-          </p>
-        </div>
+        <div id="info">
+          <div>
+            <p id="date">
+              {{ info.date }}
+            </p>
+          </div>
 
-        <div>
-          <!-- se non è presente nulla: NASA -->
-          ©
-          <span id="copyright">
-            {{ info.copyright }}
-          </span>
+          <div>
+            ©
+            <span id="copyright">
+              {{ info.copyright }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -54,8 +59,7 @@ export default {
     axios
       .get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
       .then((response) => (this.info = response.data))
-      .catch(function (error) {
-        // handle error
+      .catch((error) => {
         console.log(error);
         this.errored = true;
       });
@@ -85,7 +89,7 @@ h2 {
 }
 
 #image-container {
-  height: 100%;
+  // height: 100%;
   margin-bottom: 12px;
 }
 #exp {
@@ -94,5 +98,13 @@ h2 {
 #info {
   display: grid;
   grid-template-columns: 20% 80%;
+}
+
+.text-error {
+  position: relative;
+  top: 45%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 </style>
