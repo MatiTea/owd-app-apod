@@ -1,7 +1,4 @@
 <template>
-  <!-- in base a media_type, visualizzare foto/video
-
-  https://apod.nasa.gov/apod/image/2201/OrionStarFree3_Harbison_1080.jpg -->
   <WindowApp>
     <div v-if="errored">
       <p>
