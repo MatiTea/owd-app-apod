@@ -8,35 +8,39 @@
     </div>
 
     <div v-else>
-      <div id="image-container">
-        <v-img
-          id="pic"
-          :src="info.url"
-          contain="false"
-        />
+      <div v-if="loading" id="loading-progress">
+        <v-progress-circular indeterminate color="b4b4b4"></v-progress-circular>
       </div>
 
-      <div>
-        <h2 id="title">
-          {{ info.title }}
-        </h2>
+      <div v-else>
+        <div id="image-container">
+          <v-img id="pic" :src="info.url" contain="false" />
+        </div>
 
-        <p id="exp">
-          {{ info.explanation }}
-        </p>
+        <div>
+          <h2 id="title">
+            {{ info.title }}
+          </h2>
 
-        <div id="info">
-          <div>
-            <p id="date">
-              {{ info.date }}
-            </p>
-          </div>
+          <p id="exp">
+            {{ info.explanation }}
+          </p>
 
-          <div>
-            ©
-            <span id="copyright">
-              {{ info.copyright }}
-            </span>
+          <div id="info">
+            <div>
+              <p id="date">
+                {{ info.date }}
+              </p>
+            </div>
+
+            <div>
+              ©
+              <span v-if="info.copyright" id="copyright">
+                {{ info.copyright }}
+              </span>
+
+              <span v-else id="copyright"> NASA </span>
+            </div>
           </div>
         </div>
       </div>
@@ -51,8 +55,8 @@ export default {
   data() {
     return {
       info: [],
+      loading: true,
       errored: false,
-      image: true,
     };
   },
   mounted() {
@@ -62,7 +66,8 @@ export default {
       .catch((error) => {
         console.log(error);
         this.errored = true;
-      });
+      })
+      .finally(() => (this.loading = false));
   },
 };
 </script>
@@ -87,9 +92,14 @@ h2 {
   padding: 0;
   overflow-y: auto;
 }
-
+#loading-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 #image-container {
-  // height: 100%;
+  height: 100%;
   margin-bottom: 12px;
 }
 #exp {
