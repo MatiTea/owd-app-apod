@@ -13,8 +13,14 @@
       </div>
 
       <div v-else>
-        <div id="image-container">
-          <v-img id="pic" :src="info.url" contain="false" />
+        <div id="media-container">
+          <v-img
+            v-if="info.media_type == 'image'"
+            id="pic"
+            :src="info.url"
+          />
+
+          <iframe v-else id="video" :src="info.url"></iframe>
         </div>
 
         <div>
@@ -57,6 +63,7 @@ export default {
       info: [],
       loading: true,
       errored: false,
+      media_type: String,
     };
   },
   mounted() {
@@ -98,9 +105,14 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#image-container {
+#media-container {
   height: 100%;
   margin-bottom: 12px;
+}
+#video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
 }
 #exp {
   margin-bottom: 12px;
