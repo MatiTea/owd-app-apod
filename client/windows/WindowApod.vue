@@ -1,6 +1,6 @@
 <template>
   <WindowApp>
-    <div v-if="errored" class="text-error">
+    <div v-if="failed" class="text-error">
       <p>
         Not able to retrieve this information at the moment. <br />
         Please try again later.
@@ -62,7 +62,7 @@ export default {
     return {
       info: [],
       loading: true,
-      errored: false,
+      failed: false,
       media_type: String,
     };
   },
@@ -72,7 +72,7 @@ export default {
       .then((response) => (this.info = response.data))
       .catch((error) => {
         console.log(error);
-        this.errored = true;
+        this.failed = true;
       })
       .finally(() => (this.loading = false));
   },
